@@ -1,0 +1,56 @@
+<h2>Users</h2>
+
+<div class="well well-sm">
+  <form class="form-inline">
+    <div class="form-group">
+      <label class="sr-only" for="fullName">Full Name</label>
+      <input type="text" class="form-control" id="fullName" placeholder="Full Name">
+    </div>
+    <div class="form-group">
+      <label class="sr-only" for="userName">User Name</label>
+      <input type="text" class="form-control" id="userName" placeholder="User Name">
+    </div>
+    <div class="form-group">
+      <label class="sr-only" for="title">Title</label>
+      <input type="text" class="form-control" id="title" placeholder="Title">
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th *ngFor="let c of columns">
+        <div *ngIf="c.isSortable" (click)="sortBy(c.key)">
+          {{ c.title }} 
+          <i *ngIf="query.sortBy === c.key" 
+            class="fa"
+            [class.fa-sort-asc]="query.isSortAscending"
+            [class.fa-sort-desc]="!query.isSortAscending"
+          ></i>
+        </div>
+        <div *ngIf="!c.isSortable">
+          {{ c.title }}
+        </div>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of queryResult.items">
+      <td>{{ user.id }}</td>
+      <td>{{ user.fullName }}</td>
+      <td>{{ user.userName }}</td>
+      <td>{{ user.title }}</td>
+      <td>{{ user.noOfJobs }}</td>
+      <td>
+        <a [routerLink]="['/users/', user.id]">View</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<pagination [total-items]="queryResult.totalItems" 
+  [page-size]="query.pageSize"
+  (page-changed)="onPageChange($event)">
+</pagination>

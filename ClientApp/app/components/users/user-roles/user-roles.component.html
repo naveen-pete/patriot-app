@@ -1,0 +1,21 @@
+<br>
+
+<div class="col-md-12">
+  <form class="form-horizontal">
+    <div *ngFor="let r of roles" class="checkbox">
+      <label for="role{{ r.id }}">
+        <input type="checkbox" 
+          id="role{{ r.id }}" 
+          [checked]="userRoles.includes(r.id)"> {{ r.name }}
+      </label>
+    </div>
+    <br>
+    <div class="form-group">
+      <div class="col-sm-12">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-default">Cancel</button>
+      </div>
+    </div>
+
+  </form>
+</div>
