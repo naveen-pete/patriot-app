@@ -10,9 +10,9 @@ import { USER_ROUTES } from './components/users/user.routes';
 const APP_ROUTES: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
+    { path: 'vehicles', component: VehicleListComponent },
     { path: 'vehicles/new', component: VehicleFormComponent },
     { path: 'vehicles/:id', component: VehicleFormComponent },
-    { path: 'vehicles', component: VehicleListComponent },
     { path: 'users', component: UserListComponent },
     { path: 'users/:id', component: UserComponent, children: USER_ROUTES },
     { path: '**', redirectTo: 'home' }
